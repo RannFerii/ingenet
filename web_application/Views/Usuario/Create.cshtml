@@ -1,0 +1,312 @@
+﻿@model  Models.Usuario
+
+@{
+    ViewBag.Title = "Nuevo usuario";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN VALIDATION STATES-->
+        <div class="portlet light portlet-fit portlet-form bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class=" fa fa-user "></i>
+                    <span class="caption-subject font-dark sbold uppercase">Registro de usuario</span>
+                </div>
+                <div class="actions">
+                    <div class="btn-group btn-group-devided" data-toggle="buttons">
+                        <label class="btn btn-transparent dark btn-outline btn-circle btn-sm active">
+                            <input type="radio" name="options" class="toggle" id="option1">Actions
+                        </label>
+                        <label class="btn btn-transparent dark btn-outline btn-circle btn-sm">
+                            <input type="radio" name="options" class="toggle" id="option2">Settings
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <!-- BEGIN FORM-->
+                @using (Html.BeginForm("Create", "Usuario", FormMethod.Post, new { id = "form_sample_3", @class = "form-horizontal" }))
+
+
+                {
+                    @Html.AntiForgeryToken()
+
+                @*<form action="#" id="form_sample_3" class="form-horizontal">*@
+                    <div class="form-body">
+                        <div class="alert alert-danger display-hide">
+                            <button class="close" data-close="alert"></button> You have some form errors. Please check below.
+                        </div>
+                        <div class="alert alert-success display-hide">
+                            <button class="close" data-close="alert"></button> Your form validation is successful!
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Nombre(s)
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.Nombres, new { htmlAttributes = new { @class = "form-control", required = "required", name = "name" } })
+                                @Html.ValidationMessageFor(model => model.Nombres, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Apellido paterno
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.ApellidoPaterno, new { htmlAttributes = new { @class = "form-control", required = "required", name = "name" } })
+                                @Html.ValidationMessageFor(model => model.ApellidoPaterno, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Apellido materno
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.ApellidoMaterno, new { htmlAttributes = new { @class = "form-control", required = "required", name = "name" } })
+                                @Html.ValidationMessageFor(model => model.ApellidoMaterno, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        @*<div class="form-group">
+                            <label class="control-label col-md-3">
+                                Sexo
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.Sexo, new { htmlAttributes = new { @class = "form-control", required = "required", name = "name" } })
+                                @Html.ValidationMessageFor(model => model.Sexo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@ 
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Sexo
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-4">
+                                <div class="mt-radio-list" data-error-container="#form_2_membership_error">
+                                    <label class="mt-radio">
+                                        @*@Html.RadioButtonFor(model => model.Sexo, "true",new { @class = "membership" }) Mujer*@
+                                        @Html.RadioButtonFor(m => m.Sexo, "true") Mujer
+                                        <span></span>
+                                    </label>
+                                    <label class="mt-radio">
+                                       @Html.RadioButtonFor(m => m.Sexo, "false")Hombre
+                                        @*<input type="radio" name="membership" value="0" /> Hombre*@
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <div id="form_2_membership_error"> </div>
+                            </div>
+                        </div>
+
+
+                        @*<div class="form-group">
+                            <label class="control-label col-md-3">
+                                Fecha
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.FechaNacimiento, new { htmlAttributes = new { @class = "form-control", required = "required", name = "name" } })
+                                @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+                       <div class="form-group">
+                            <label class="control-label col-md-3">Fecha de nacimiento</label>
+                            <div class="col-md-4">
+                                <div class="input-group date date-picker" data-date-format="dd-mm-yyyy">
+                                    @*<input type="text" class="form-control" readonly name="datepicker">*@
+                                    @Html.EditorFor(model => model.FechaNacimiento, new { htmlAttributes = new { @readonly = "readonly" , @class = "form-control", name = "datepicker" } })
+                                    @*@Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })*@
+                                    <span class="input-group-btn">
+                                        <button class="btn default" type="button">
+                                            <i class="fa fa-calendar"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                                <span class="help-block">Selecciona una fecha</span>
+                            </div>
+                        </div>
+
+
+                       @{
+                           List<SelectListItem> listItems = new List<SelectListItem>();
+                           listItems.Add(new SelectListItem
+                           {
+                               Text = "Ingenieria en Computación",
+                               Value = "1"
+                           });
+                           listItems.Add(new SelectListItem
+                           {
+                               Text = "Ingenieria Civil",
+                               Value = "2",
+                               Selected = true
+                           });
+                           listItems.Add(new SelectListItem
+                           {
+                               Text = "Ingenieria en Mecatrónica",
+                               Value = "3"
+                           });
+                    }
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Carrera:
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-4"> 
+                                @Html.DropDownListFor(model => model.Ocupacion, listItems, "--Seleccionar--", new { @class = "form-control select2me", name = "options2" })
+
+                            </div>
+                        </div>
+                        @{
+                            List<SelectListItem> listItems2 = new List<SelectListItem>();
+                            listItems2.Add(new SelectListItem
+                            {
+                                Text = "Docente",
+                                Value = "1"
+                            });
+                            listItems2.Add(new SelectListItem
+                            {
+                                Text = "Inventor",
+                                Value = "2",
+                                Selected = true
+                            });
+                            listItems2.Add(new SelectListItem
+                            {
+                                Text = "Desarrollador",
+                                Value = "3"
+                            });
+                        }
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Ocupacion:
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-4">
+                                @Html.DropDownListFor(model => model.Carrera, listItems2, "--Seleccionar--", new { @class = "form-control select2me", name = "options2" })
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Nombre de usuario (alias)
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", required = "required", name = "name" } })
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Rol
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-4">
+                                <div class="mt-radio-list" data-error-container="#form_2_membership_error">
+                                    <label class="mt-radio">
+                                        @*@Html.RadioButtonFor(model => model.Sexo, "true",new { @class = "membership" }) Mujer*@
+                                        @Html.RadioButtonFor(m => m.Rol, "U") Usuario
+                                        <span></span>
+                                    </label>
+                                    <label class="mt-radio">
+                                        @Html.RadioButtonFor(m => m.Rol, "A") Administrador
+                                        @*<input type="radio" name="membership" value="0" /> Hombre*@
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <div id="form_2_membership_error"> </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="estatus">
+                            @Html.LabelFor(model => model.Estatus, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Estatus, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Estatus, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">
+                                Correo electrónico
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-envelope"></i>
+                                    </span>
+                                    @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "form-control", required = "required", name = "name" } })
+                                    @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Contraseña
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.Cotraseña, new { htmlAttributes = new { @class = "form-control", required = "required", name = "name" } })
+                                @Html.ValidationMessageFor(model => model.Cotraseña, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Descripcion
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-9">
+                                @*@Html.TextAreaFor(model => model.Descripción, 10, 80, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.TextAreaFor(model => model.Descripción, new { rows = 10, columns = 40, @class = "wysihtml5 form-control" })
+                                @*<textarea class="wysihtml5 form-control" rows="6" name="editor1" data-error-container="#editor1_error"></textarea>*@
+                                <div id="editor1_error"> </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn green">Registrarse</button>
+                                <button type="button" class="btn default">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                @*</form>*@
+                            }  
+                <!-- END FORM-->
+            </div>
+            <!-- END VALIDATION STATES-->
+        </div>
+    </div>
+</div>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/select2.full.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/additional-methods.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/wysihtml5-0.3.0.js" type="text/javascript"></script>
+    <script src="~/Scripts/bootstrap-wysihtml5.js" type="text/javascript"></script>
+    <script src="~/Scripts/ckeditor.js" type="text/javascript"></script>
+    <script src="~/Scripts/bootstrap-markdown.js" type="text/javascript"></script>
+    <script src="~/Scripts/markdown.js" type="text/javascript"></script>
+    <script src="~/Scripts/form-validation.min.js" type="text/javascript"></script>
+    
+    <script>
+        //Cuando se crea un usuario por primera vez se oculta el campo "Estatus" segun forti
+        $(document).ready(function () {
+            $('#estatus').hide()
+            });
+    </script>
+}
