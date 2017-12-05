@@ -172,8 +172,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\AcountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\TemasController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -190,7 +192,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Models\Login.cs" />
-    <Compile Include="Models\Startup1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +240,7 @@
     <Content Include="Scripts\jquery-1.12.4.min.map" />
     <Content Include="Views\Acount\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPage.cshtml" />
+    <Content Include="Views\Notification\Index.cshtml" />
     <None Include="Views\Temas\Create.cshtml" />
     <Content Include="Views\Temas\Edit.cshtml" />
     <Content Include="Views\Temas\Details.cshtml" />

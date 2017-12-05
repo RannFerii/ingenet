@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace ASPNETMVCBlank.Models
+namespace web_application.Models
 {
     public class Login
     {

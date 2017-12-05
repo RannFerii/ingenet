@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>NOTIFICACIONIndex</h2>
+
+
+<form class="form-horizontal" id="formulario_notificacion_ocultar">
+    
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="title">Notification text:</label>
+        <div class="col-md-5">
+            <input id="notific8_text" type="text" class="form-control" value="Inspired by Windows 8 notifications" placeholder="enter a text ..." />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="title">Heading(optional):</label>
+        <div class="col-md-5">
+            <input id="notific8_heading" type="text" class="form-control" value="" placeholder="enter a heading ..." />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="title">Sticky ?</label>
+        <div class="col-md-5">
+            <label class="checkbox">
+                <input type="checkbox" id="notific8_sticky" value="1">
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="title">Life:</label>
+        <div class="col-md-5">
+            <select id="notific8_life" class="form-control input-medium">
+                <option value="1000">1 second</option>
+                <option value="5000">5 seconds</option>
+                <option value="10000" selected="selected">10 seconds (default)</option>
+                <option value="25000">25 seconds</option>
+                <option value="60000">60 seconds</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="title">Style:</label>
+        <div class="col-md-5">
+            <select id="notific8_theme" class="form-control input-medium">
+                <option value="teal" selected="selected">teal (default)</option>
+                <option value="amethyst">amethyst</option>
+                <option value="ruby">ruby</option>
+                <option value="tangerine">tangerine</option>
+                <option value="lemon">lemon</option>
+                <option value="lime">lime</option>
+                <option value="ebony">ebony</option>
+                <option value="smoke">smoke</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="title">Position:</label>
+        <div class="col-md-5">
+            <select id="notific8_pos_hor" class="form-control input-small input-inline">
+                <option value="top">top (default)</option>
+                <option value="bottom">bottom</option>
+            </select>
+            <select id="notific8_pos_ver" class="form-control input-small input-inline">
+                <option value="right">right (default)</option>
+                <option value="left">left</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="title"></label>
+        <div class="col-md-5">
+            <a href="javascript:;" class="btn red btn-outline sbold uppercase btn-lg" id="notific8_show"> Show Notification! </a>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+    <script type="text/javascript">
+        var notificacion;
+        $(document).ready(function () {
+            var notificacion = @Html.Raw(Json.Encode(ViewBag.notificacion));
+            @*notificacion = @ViewBag.notificacion;*@
+
+            function alerta() {
+                alert(notificacion);
+            }
+            function enviar()
+            { $("#notific8_show").click(); }
+            //function lanzadera() {
+            //    funcion_primera();
+            //    funcion_segunda();
+            //    funcion_tercera();
+            //}
+            var f = 0;
+            if (f == 1)
+            {
+                window.onload = alerta;
+            }
+            f++;
+          
+            // $('#formulario_notificacion_ocultar').hide();
+
+        });
+    </script>
+    <script src="~/Scripts/ui-notific8.min.js"></script>
+    <script src="~/Scripts/jquery.notific8.min.js"></script>
+}
+

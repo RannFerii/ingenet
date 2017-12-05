@@ -1,4 +1,4 @@
-﻿using ASPNETMVCBlank.Models;
+﻿using web_application.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +8,10 @@ using System.Web.UI.WebControls;
 using System.Security.Claims;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
-using Models;
+using Entities;
+using BLL;
 
-namespace ASPNETMVCBlank.Controllers
+namespace web_application.Controllers
 {
     public class AcountController : Controller
     {
@@ -24,12 +25,13 @@ namespace ASPNETMVCBlank.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Models.Login data, string returnUrl)
+        public ActionResult Login(web_application.Models.Login data, string returnUrl)
         {
-            IngenetEntities db = new IngenetEntities();
+            //IngenetEntities db = new IngenetEntities();
             ActionResult Result;
-
-            var user = db.Usuarios.FirstOrDefault(p => p.Correo == data.Correo && p.Cotraseña == data.Cotraseña && p.Estatus == 1);
+            UsuariosBLL oBLL = new UsuariosBLL();
+            List<Usuario> usuarios = oBLL.RetrieveAll();
+            Usuario user= usuarios.FirstOrDefault(p => p.Correo == data.Correo && p.Cotraseña == data.Cotraseña && p.Estatus == 1);
             if (user != null)
             {
                 if (user.Estatus == 1)
