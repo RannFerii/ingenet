@@ -14,6 +14,7 @@
     <EntitySetMapping Name="Preguntas">
       <EntityTypeMapping TypeName="IngenetModel.Pregunta">
         <MappingFragment StoreEntitySet="Preguntas">
+          <ScalarProperty Name="Creada" ColumnName="Creada" />
           <ScalarProperty Name="PreguntaID" ColumnName="PreguntaID" />
           <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
           <ScalarProperty Name="TituloPregunta" ColumnName="TituloPregunta" />
@@ -25,6 +26,7 @@
     <EntitySetMapping Name="Respuestas">
       <EntityTypeMapping TypeName="IngenetModel.Respuesta">
         <MappingFragment StoreEntitySet="Respuestas">
+          <ScalarProperty Name="Creada" ColumnName="Creada" />
           <ScalarProperty Name="ContenidoRespuesta" ColumnName="ContenidoRespuesta" />
           <ScalarProperty Name="RespuestaID" ColumnName="RespuestaID" />
           <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
@@ -62,6 +64,7 @@
     <EntitySetMapping Name="Usuarios">
       <EntityTypeMapping TypeName="IngenetModel.Usuario">
         <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
           <ScalarProperty Name="Estatus" ColumnName="Estatus" />
           <ScalarProperty Name="Correo" ColumnName="Correo" />
           <ScalarProperty Name="Descripción" ColumnName="Descripción" />

@@ -34,15 +34,18 @@
     <link href="~/Content/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
     <link href="~/Content/datatables.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/plugins.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/select2.css" rel="stylesheet" type="text/css" /> 
-    <link href="~/Content/select2-bootstrap.min.css" rel="stylesheet" type="text/css" /> 
-    <link href="~/Content/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" /> 
-    <link href="~/Content/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" /> 
-    <link href="~/Content/bootstrap-markdown.min.css" rel="stylesheet" type="text/css" />
-    <!--Formulario-->
+    <link href="~/Content/components-rounded.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-switch.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/editor.css" rel="stylesheet" type="text/css" />
-    <!-- Layout -->
+    
+    <!--Fotos-->
+    <link href="~/Content/fileinput.css" rel="stylesheet" />
+    @RenderSection("Styles", required: false)
+    @*<link href="~/Content/jquery.fancybox.css" rel="stylesheet" />
+    <link href="~/Content/jquery.fileupload-ui.css" rel="stylesheet" />
+    <link href="~/Content/jquery.fileupload.css" rel="stylesheet" />
+    <link href="~/Content/blueimp-gallery.min.css" rel="stylesheet" />*@
+    <!-- Estilo default para el amdministrador -->
     <link href="~/Content/layout.min.css" rel="stylesheet" type="text/css" />
     @if (Rol.Equals("A"))
     {
@@ -50,18 +53,17 @@
     }
     else
     {
+        <!-- Estilo darkblue para todos los usuarios menos administrador  -->
         <link href="~/Content/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
     }
     <link href="~/Content/custom.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/jquery.notific8.min.css" rel="stylesheet" />
     <!--datatables-->
-    @if (IsSectionDefined("Styles"))
-    {
-        @RenderSection("Styles", required: false)
-    }
+  
     
-   // @Styles.Render("~/Content/css")
+    
+    @Styles.Render("~/Content/css")
     @*@Styles.Render("~/Content/custom/css")
     @Scripts.Render("~/bundles/modernizr")*@
     <link rel="icon" href="@Url.Content("~/Content/favicon.ico")" />
@@ -74,7 +76,8 @@
             <div class="page-header-inner ">
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
-                    <img src="~/img/ingenet_small_5.png" alt="logo" class="logo-default" /> 
+                     <a href="@Url.Action("Index", "Home")" >
+                    <img src="~/img/ingenet_small_5.png" alt="logo" class="logo-default" />  </a>
                     <div class="menu-toggler sidebar-toggler">
                         <span></span>
                     </div>
@@ -408,8 +411,14 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
                                     <li>
-                                        <a href="page_user_profile_1.html">
-                                            <i class="icon-user"></i> My Profile
+                                        <a href="@Url.Action("Details", "Usuario",new { id = @ID })">
+                                                <i class="icon-user"></i> My Profile
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="@Url.Action("Create", "Preguntas",new { id = @ID })">
+                                            <i class="icon-user"></i> Preguntas
                                         </a>
                                     </li>
                                     <li>
@@ -814,7 +823,7 @@
         </div>
     
     </div>
-    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.min.js" type="text/javascript"></script>
     <script src="~/Scripts/bootstrap.min.js" type="text/javascript"></script>
     <script src="~/Scripts/js.cookie.min.js" type="text/javascript"></script>
     <script src="~/Scripts/jquery.slimscroll.min.js" type="text/javascript"></script>

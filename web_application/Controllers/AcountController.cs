@@ -30,8 +30,8 @@ namespace web_application.Controllers
             //IngenetEntities db = new IngenetEntities();
             ActionResult Result;
             UsuariosBLL oBLL = new UsuariosBLL();
-            List<Usuario> usuarios = oBLL.RetrieveAll();
-            Usuario user= usuarios.FirstOrDefault(p => p.Correo == data.Correo && p.Cotraseña == data.Cotraseña && p.Estatus == 1);
+            List<Entities.Usuario> usuarios = oBLL.RetrieveAll();
+            Entities.Usuario user = usuarios.FirstOrDefault(p => p.Correo == data.Correo && p.Cotraseña == data.Cotraseña && p.Estatus == 1);
             if (user != null)
             {
                 if (user.Estatus == 1)
@@ -50,7 +50,7 @@ namespace web_application.Controllers
             return Result;
         }
         [AllowAnonymous]
-        private ActionResult SignInUser(Usuario user, bool rememberMe, string returnUrl)
+        private ActionResult SignInUser(Entities.Usuario user, bool rememberMe, string returnUrl)
         {
             ActionResult Result;
             var Claims = new List<Claim>();

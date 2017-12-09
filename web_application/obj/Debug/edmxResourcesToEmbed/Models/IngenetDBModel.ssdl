@@ -71,6 +71,7 @@
     <Property Name="Descripción" Type="varchar(max)" />
     <Property Name="Correo" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Estatus" Type="int" />
+    <Property Name="Foto" Type="varbinary(max)" />
   </EntityType>
   <Association Name="FK_Estadisticas_Usuarios">
     <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />

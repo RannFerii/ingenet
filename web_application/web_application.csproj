@@ -176,6 +176,7 @@
     <Compile Include="Controllers\AcountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\PreguntasController.cs" />
     <Compile Include="Controllers\TemasController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -192,6 +193,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\VUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -241,6 +243,11 @@
     <Content Include="Views\Acount\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPage.cshtml" />
     <Content Include="Views\Notification\Index.cshtml" />
+    <Content Include="Views\Preguntas\Create.cshtml" />
+    <Content Include="Views\Preguntas\Delete.cshtml" />
+    <Content Include="Views\Preguntas\Details.cshtml" />
+    <Content Include="Views\Preguntas\Edit.cshtml" />
+    <Content Include="Views\Preguntas\Index.cshtml" />
     <None Include="Views\Temas\Create.cshtml" />
     <Content Include="Views\Temas\Edit.cshtml" />
     <Content Include="Views\Temas\Details.cshtml" />
@@ -268,7 +275,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\NewFolder1\" />
     <Folder Include="Views\img\" />
   </ItemGroup>
   <ItemGroup>

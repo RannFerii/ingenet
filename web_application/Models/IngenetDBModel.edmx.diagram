@@ -12,7 +12,7 @@
         <AssociationConnector Association="IngenetModel.FK_Respuesta_Pregunta" ManuallyRouted="false" />
         <AssociationConnector Association="IngenetModel.PreguntaTemas" ManuallyRouted="false" />
         <EntityTypeShape EntityType="IngenetModel.sysdiagram" Width="1.5" PointX="5.375" PointY="0.75" />
-        <EntityTypeShape EntityType="IngenetModel.Usuario" Width="1.5" PointX="0.75" PointY="2.625" />
+        <EntityTypeShape EntityType="IngenetModel.Usuario" Width="1.5" PointX="0.75" PointY="2.5" />
         <AssociationConnector Association="IngenetModel.FK_Estadisticas_Usuarios" />
         <AssociationConnector Association="IngenetModel.FK_Pregunta_Usuario" />
         <AssociationConnector Association="IngenetModel.FK_Respuesta_Usuario" />

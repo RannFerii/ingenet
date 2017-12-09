@@ -114,6 +114,7 @@
     <Property Name="Descripción" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Estatus" Type="Int32" />
+    <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="Estadisticas" Relationship="IngenetModel.FK_Estadisticas_Usuarios" FromRole="Usuario" ToRole="Estadistica" />
     <NavigationProperty Name="Preguntas" Relationship="IngenetModel.FK_Pregunta_Usuario" FromRole="Usuario" ToRole="Pregunta" />
     <NavigationProperty Name="Respuestas" Relationship="IngenetModel.FK_Respuesta_Usuario" FromRole="Usuario" ToRole="Respuesta" />

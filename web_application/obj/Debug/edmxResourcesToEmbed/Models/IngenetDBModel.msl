@@ -62,6 +62,7 @@
     <EntitySetMapping Name="Usuarios">
       <EntityTypeMapping TypeName="IngenetModel.Usuario">
         <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
           <ScalarProperty Name="Estatus" ColumnName="Estatus" />
           <ScalarProperty Name="Correo" ColumnName="Correo" />
           <ScalarProperty Name="Descripción" ColumnName="Descripción" />

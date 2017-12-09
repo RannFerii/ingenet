@@ -76,6 +76,7 @@
           <Property Name="Descripción" Type="varchar(max)" />
           <Property Name="Correo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Estatus" Type="int" />
+          <Property Name="Foto" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_Estadisticas_Usuarios">
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
@@ -300,6 +301,7 @@
           <Property Name="Descripción" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Estatus" Type="Int32" />
+          <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Estadisticas" Relationship="IngenetModel.FK_Estadisticas_Usuarios" FromRole="Usuario" ToRole="Estadistica" />
           <NavigationProperty Name="Preguntas" Relationship="IngenetModel.FK_Pregunta_Usuario" FromRole="Usuario" ToRole="Pregunta" />
           <NavigationProperty Name="Respuestas" Relationship="IngenetModel.FK_Respuesta_Usuario" FromRole="Usuario" ToRole="Respuesta" />
@@ -407,6 +409,7 @@
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="IngenetModel.Usuario">
               <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
                 <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="Descripción" ColumnName="Descripción" />

@@ -2,12 +2,15 @@
 using Entities;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Web;
 using System.Web.Mvc;
 namespace web_application.Controllers
 {
     public class UsuarioController : Controller
     {
         // GET: Usuario
+        
         public ActionResult Index()
         {
             UsuariosBLL oBLL = new UsuariosBLL();
@@ -21,15 +24,22 @@ namespace web_application.Controllers
         }
 
         
-[HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Usuario usuario)
+        public ActionResult Create(Usuario usuario, HttpPostedFileBase upFile)
         {
             ActionResult Result;
             try
             {
                 if (ModelState.IsValid)
                 {
+                    if (upFile != null && upFile.ContentLength > 0)
+                    {
+                        int tamaño = upFile.ContentLength;
+                        byte[] buffer = new byte[tamaño];
+                        upFile.InputStream.Read(buffer, 0, tamaño);
+                        usuario.Foto = buffer;
+                    }
                     UsuariosBLL oBLL = new UsuariosBLL();
                     oBLL.Create(usuario);
                     Result = RedirectToAction("Index");
@@ -55,14 +65,40 @@ namespace web_application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Usuario usuario)
+        public ActionResult Edit(Usuario usuario, HttpPostedFileBase upFile)
         {
             ActionResult Result;
             try
             {
+
+                Usuario tmpusuario = null;
+                UsuariosBLL oBLL = new UsuariosBLL();
+
                 if (ModelState.IsValid)
                 {
-                    UsuariosBLL oBLL = new UsuariosBLL();
+                    
+                    tmpusuario = oBLL.Retrieve(usuario.UsuarioID);
+                    tmpusuario.UserName = usuario.UserName;
+                    tmpusuario.Rol = usuario.Rol;
+                    tmpusuario.Nombres = usuario.Nombres;
+                    tmpusuario.ApellidoMaterno = usuario.ApellidoMaterno;
+                    tmpusuario.ApellidoPaterno = usuario.ApellidoPaterno;
+                    tmpusuario.Cotraseña = usuario.Cotraseña;
+                    tmpusuario.Sexo = usuario.Sexo;
+                    tmpusuario.Ocupacion = usuario.Ocupacion;
+                    tmpusuario.Carrera = usuario.Carrera;
+                    tmpusuario.Descripción = usuario.Descripción;
+                    tmpusuario.Correo = usuario.Correo;
+                    tmpusuario.Estatus = usuario.Estatus;
+
+                    if (upFile != null && upFile.ContentLength > 0)
+                    {
+                        int tamaño = upFile.ContentLength;
+                        byte[] buffer = new byte[tamaño];
+                        upFile.InputStream.Read(buffer, 0, tamaño);
+                        tmpusuario.Foto = buffer;
+                    }
+
                     oBLL.Update(usuario);
                     Result = RedirectToAction("Index");
                 }
@@ -82,6 +118,7 @@ namespace web_application.Controllers
         {
             UsuariosBLL oBLL = new UsuariosBLL();
             Usuario usuario = oBLL.Retrieve(id);
+            ViewBag.ID = id;
 
             return View(usuario);
         }
@@ -92,6 +129,14 @@ namespace web_application.Controllers
             UsuariosBLL oBLL = new UsuariosBLL();
             oBLL.Delete(id);
             return RedirectToAction("Index"); //redirecionar al index cuando borres
+        }
+
+        public FileStreamResult GetImage(int id)
+        {
+            UsuariosBLL oBLL = new UsuariosBLL();
+            Usuario usuario = oBLL.Retrieve(id);
+            var bytes = usuario.Foto;
+            return File(new MemoryStream(bytes, 0, bytes.Length), "image/jpeg");
         }
     }
 }
